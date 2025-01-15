@@ -1,8 +1,12 @@
-import EventPractice from "./EventPratice";
 import "./App.css";
+import EventPractice from "./EventPractice";
 
 function App() {
-  return <EventPractice />;
+  return (
+    <div>
+      <EventPractice />
+    </div>
+  );
 }
 
 export default App;
