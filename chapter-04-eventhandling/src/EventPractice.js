@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class EventPractice extends Component {
   state = {
+    username: "",
     message: "",
   };
 
@@ -10,10 +11,15 @@ class EventPractice extends Component {
   };
 
   handleClick = () => {
-    alert(this.state.message);
+    alert(this.state.message + ":" + this.state.message);
     this.setState({ username: "", message: "" });
   };
 
+  handleKeypress = (e) => {
+    if (e.key === "Enter") {
+      this.handleClick();
+    }
+  };
   render() {
     return (
       <div>
