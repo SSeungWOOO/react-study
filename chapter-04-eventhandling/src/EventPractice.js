@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 
 const EventPractice = () => {
-  const [state, setState] = useState({
-    username: "",
-    message: "",
-  });
+  // 상태 관리: form 객체
+  const [form, setForm] = useState({ username: "", message: "" });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  // 객체 구조 분해 할당
+  const { username, message } = form;
+
+  // onChange 핸들러
+  const onChange = (e) => {
+    const nextForm = {
+      ...form,
+      [e.target.name]: e.target.value,
+    };
+    setForm(nextForm);
   };
 
-  const handleClick = () => {
-    alert(`${state.message}: ${state.message}`);
-    setState({
-      username: "",
-      message: "",
-    });
+  // onClick 핸들러
+  const onClick = () => {
+    alert(username + ":" + message);
+    setForm({ username: "", message: "" });
   };
 
-  const handleKeypress = (e) => {
+  // onKeyPress 핸들러
+  const onKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleClick();
+      onClick();
     }
   };
 
@@ -33,20 +34,20 @@ const EventPractice = () => {
       <h1>이벤트 연습</h1>
       <input
         type="text"
-        name="message"
-        placeholder="아무거나 입력하세요"
-        value={state.message}
-        onChange={handleChange}
-        onKeyPress={handleKeypress}
+        name="username"
+        placeholder="사용자명"
+        value={username}
+        onChange={onChange}
       />
       <input
         type="text"
-        name="username"
-        placeholder="사용자명"
-        value={state.username}
-        onChange={handleChange}
+        name="message"
+        placeholder="아무거나 입력ㄱㄱ"
+        value={message}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
       />
-      <button onClick={handleClick}>확인</button>
+      <button onClick={onClick}>확인</button>
     </div>
   );
 };
